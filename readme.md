@@ -12,7 +12,8 @@ PSYCHE (pronounced "pa shuu ke") is a personal fork of ACCELA.
 # Running
 
 ## Linux (Automatic)
-An automatic installation tool (akin to [enter-the-wired](https://github.com/ciscosweater/enter-the-wired)) is currently in development. Please follow [Running from source](#running-from-source) for the time being.
+An automatic installation tool (akin to [enter-the-wired](https://github.com/ciscosweater/enter-the-wired)) is currently in development.  
+Please follow [Running from source](#running-from-source) for the time being.
 <!-- 1. Run the following command in your terminal: `placeholder`
 2. Launch ACCELA from your DE's launcher.-->
 ## Windows (Automatic)
@@ -20,7 +21,7 @@ An automatic installation tool (akin to [enter-the-wired](https://github.com/cis
 2. Extract the zip into a new folder
 3. Read `!README.txt`
 4. Run `ACCELA.exe`
-## Running from source
+## Running from source	
 This supports Windows, Linux, and (to a limited extent), MacOS.
 
 ### Prerequisites
