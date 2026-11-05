@@ -18,6 +18,8 @@ cd ~/.local/share/
 git clone https://github.com/uncreativeCultist/layer03.git
 mv layer03 PSYCHE
 cp ~/.local/share/PSYCHE/deps/LinuxInstallation/accela.desktop ~/.local/share/applications/
+chmod +x ~/.local/share/applications/accela.desktop
+chmod +x ~/.local/share/PSYCHE/deps/LinuxInstallation/run.sh
 python3 -m venv ~/.local/share/PSYCHE/venv/
 ~/.local/share/PSYCHE/venv/bin/python3 -m pip install -r ~/.local/share/PSYCHE/requirements.txt
 echo PSYCHE installed.
