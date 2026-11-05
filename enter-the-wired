@@ -17,7 +17,7 @@ cd ~/.local/share/
 git clone https://github.com/uncreativeCultist/layer03.git
 mv layer03 PSYCHE
 cp ~/.local/share/PSYCHE/deps/LinuxInstallation/accela.desktop ~/.local/share/applications/
-python3 -m venv ~/.local/share/PSYCHE/venv/venv
+python3 -m venv ~/.local/share/PSYCHE/venv/
 ~/.local/share/PSYCHE/venv/bin/python3 -m pip install -r requirements.txt
 echo PSYCHE installed.
 echo launch "ACCELA" from your applications folder.
