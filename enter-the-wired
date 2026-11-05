@@ -13,6 +13,7 @@ then
     exit 1
 fi
 curl -fsSL headcrab.pages.dev | bash #this is so fucking stupid :sob:
+rm -rf SLSsteam_Download #why do you stay here
 cd ~/.local/share/
 git clone https://github.com/uncreativeCultist/layer03.git
 mv layer03 PSYCHE
