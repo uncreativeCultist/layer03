@@ -12,9 +12,18 @@ PSYCHE (pronounced "pa shuu ke") is a personal fork of ACCELA.
 # Running
 
 ## Linux (Automatic)
-An automatic installation tool (akin to [enter-the-wired](https://github.com/ciscosweater/enter-the-wired)) is currently in development.  
-Please follow [Running from source](#running-from-source) for the time being.
-<!-- 1. Run the following command in your terminal: `placeholder`
+A proper automatic installation tool (akin to [enter-the-wired](https://github.com/ciscosweater/enter-the-wired)) is currently in development.  
+For now, you can download and run PSYCHE using the following instructions.
+### Prerequisites
+1. [Python 3.14](https://www.python.org/downloads/release/python-31410/) (ymmv with newer/older versions)
+2. [Git](https://git-scm.com/)
+3. Curl
+
+---
+### Installation
+Run the following in a terminal: `git clone https://github.com/uncreativeCultist/layer03.git && cd layer03 && chmod +x run.sh && ./run.sh` 
+<!-- Please follow [Running from source](#running-from-source) for the time being.
+1. Run the following command in your terminal: `placeholder`
 2. Launch ACCELA from your DE's launcher.-->
 ## Windows (Automatic)
 1. Download the latest release
