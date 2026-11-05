@@ -1,0 +1,23 @@
+#!/bin/bash
+if ! command -v python3 >/dev/null 2>&1
+then
+    echo "python3 is not installed. exiting."
+    exit 1
+elif ! command -v curl >/dev/null 2>&1
+then
+    echo "curl is not installed. exiting."
+    exit 1
+elif ! command -v git >/dev/null 2>&1
+then
+    echo "git is not installed. exiting."
+    exit 1
+fi
+curl -fsSL headcrab.pages.dev | bash #this is so fucking stupid :sob:
+cd ~/.local/share/
+git clone https://github.com/uncreativeCultist/layer03.git
+mv layer03 PSYCHE
+cp ~/.local/share/PSYCHE/deps/LinuxInstallation/accela.desktop ~/.local/share/applications/
+python3 -m venv venv
+~/.local/share/PSYCHE/venv/bin/python3 -m pip install -r requirements.txt
+echo PSYCHE installed.
+echo launch "ACCELA" from your applications folder.

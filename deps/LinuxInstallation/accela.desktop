@@ -1,0 +1,17 @@
+[Desktop Entry]
+Categories=Utility;Application;
+Comment=ＧｏＤ_Ｉｓ_ｉＮ_ｔＨｅ_ＷｉＲｅＤ
+Exec=~/.local/share/ACCELA/deps/LinuxInstallation/run.sh %u
+Icon=accela
+MimeType=x-scheme-handler/accela;
+Name=ACCELA
+NoDisplay=false
+Path=
+PrefersNonDefaultGPU=false
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=2.0
+X-KDE-SubstituteUID=false
+X-KDE-Username=
