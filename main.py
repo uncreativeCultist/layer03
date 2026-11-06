@@ -22,9 +22,14 @@ import threading
 from urllib.parse import unquote
 import ctypes
 from PyQt6.QtGui import QFont
-from PyQt6.QtWidgets import QApplication
+from PyQt6.QtWidgets import (
+    QApplication,
+    QMessageBox,
+)
 from PyQt6.QtCore import QTimer, QMetaObject, Qt, Q_ARG
 from core.steam_helpers import _find_steam_windows
+import webbrowser
+import subprocess
 
 logger = setup_logging()
 
@@ -102,7 +107,6 @@ def getnewKey():
 
         driver.get("https://hubcapmanifest.com/api-keys/stats")
             
-        #print("NO MATTER WHERE YOU ARE, EVERYONE IS ALWAYS CONNECTED.")
         cookies = driver.get_cookies()
         with open("hubcapsesh.json", "w+") as file:
             json.dump(cookies, file)
@@ -157,8 +161,6 @@ else:
     getnewKey()
 
 api_key = open("hubcapkey.txt").read()
-
-
 
 from ui.main_window import MainWindow
 from ui.theme import update_appearance
@@ -354,6 +356,43 @@ def main():
         main_win = MainWindow()
         main_win.show()
         logger.info("Main window displayed successfully.")
+
+        if settings.value("update", True) == True:
+            update_url = requests.get("https://raw.githubusercontent.com/uncreativeCultist/layer03/refs/heads/main/res/version")
+            if update_url.status_code == 200:
+                latestver = update_url.text
+                if app_version not in latestver:
+                    if "dev" not in app_version.lower():
+                        logger.warning("You have 1 unread mail.")
+                        msg_box = QMessageBox()
+                        msg_box.setWindowTitle("Outdated Version")
+                        msg_box.setText(
+                            "An update is available.\n"
+                            f"You are running {app_version}, while the latest is\n {latestver}.\n\n"
+                            "Press 'Apply' to update, or press ignore.\n"
+                            "You can turn off update notifications in settings."
+                        )
+                        msg_box.setStandardButtons(QMessageBox.StandardButton.Apply)
+                        msg_box.addButton(QMessageBox.StandardButton.Ignore)
+                        msg_box.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint, True)
+                        reply = msg_box.exec()
+                        if reply == QMessageBox.StandardButton.Apply:
+                            if sys.platform == "linux" or "darwin":
+                                subprocess.run(["git", "pull"], capture_output=True, text=True)
+                                subprocess.run(["./venv/bin/python3", "-m", "pip", "install", "-r", "requirements.txt"], capture_output=True, text=True)
+                                msg_box = QMessageBox()
+                                msg_box.setWindowTitle("Update installed")
+                                msg_box.setText(
+                                    f"Update installed. ACCELA will now close."
+                                )
+                                msg_box.setStandardButtons(QMessageBox.StandardButton.Ok)
+                                msg_box.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint, True)
+                                msg_box.exec()
+                                sys.exit(1)
+                            else:
+                                webbrowser.open("https://github.com/uncreativeCultist/layer03/releases/")
+                            sys.exit(1)
+
 
         # ---------------------------------------------------------------------
         # Post-Launch Processing

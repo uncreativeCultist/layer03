@@ -547,6 +547,7 @@ class SettingsDialog(QDialog):
         layout = QVBoxLayout(tab)
         layout.setContentsMargins(15, 15, 15, 15)
 
+
         if sys.platform == "linux":
             # API Keys Group
             key_group = QGroupBox("API Keys")
@@ -577,6 +578,24 @@ class SettingsDialog(QDialog):
 
         stats_group.setLayout(stats_layout)
         layout.addWidget(stats_group)
+
+        # Update Group
+        update_group = QGroupBox("PSYCHE Settings")
+        update_layout = QVBoxLayout()
+        update_layout.setContentsMargins(15, 15, 15, 15)
+
+        update_tooltip = 'Whether or not to check for updates. Will run once at boot.'
+        self.update_checkbox = create_checkbox_setting(
+            "Check For Updates",
+            "update",
+            True,
+            self,
+            update_tooltip,
+        )
+        update_layout.addWidget(self.update_checkbox)
+        update_group.setLayout(update_layout)
+        layout.addWidget(update_group)
+
 
         layout.addStretch()
 
@@ -1000,6 +1019,7 @@ class SettingsDialog(QDialog):
         self._save_audio_settings()
         if not self._save_style_settings():
             return  # Style validation failed
+        self.settings.setValue("update", self.update_checkbox.isChecked())
         logger.info("All settings saved.")
         super().accept()
 
