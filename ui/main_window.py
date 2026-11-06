@@ -39,7 +39,6 @@ from ui.dialogs.gamelibrary import GameLibraryDialog
 from ui.dialogs.lain import LainMinigameDialog
 from ui.dialogs.settings import SettingsDialog
 from ui.dialogs.status import StatusDialog
-from ui.dialogs.notice import NoticeDialog
 from utils.logger import qt_log_handler
 from utils.paths import Paths
 from utils.settings import get_settings
