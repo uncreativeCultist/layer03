@@ -12,7 +12,8 @@ PSYCHE (pronounced "pa shuu ke") is a personal fork of ACCELA.
 # Running
 
 ## Linux (Automatic)
-In a terminal, run: `curl -fsSL https://raw.githubusercontent.com/uncreativeCultist/layer03/refs/heads/main/enter-the-wired | bash` 
+Run: `curl -fsSL https://raw.githubusercontent.com/uncreativeCultist/layer03/refs/heads/main/enter-the-wired | bash`  
+Note: If PSYCHE fails to launch, make sure your distro's package for tkinter is installed.
 ## Windows (Automatic)
 1. Download the latest release
 2. Extract the zip into a new folder
