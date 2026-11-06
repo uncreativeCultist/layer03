@@ -737,6 +737,44 @@ class SettingsDialog(QDialog):
         tab = QWidget()
         layout = QVBoxLayout(tab)
         layout.setContentsMargins(15, 15, 15, 15)
+        self.tab_widget.addTab(tab, "Sound")
+
+        # Sound Group
+        sound_group = QGroupBox("Sound Toggles")
+        sound_layout = QVBoxLayout()
+
+        etw_tooltip = 'Play "Entering the wired" TTS when opening ACCELA.'
+        powerline_tooltip = 'Play ambient power line (50 hz) buzzing.'
+        lall_tooltip = 'Play "Let\'s all love Lain" TTS when closing ACCELA.'
+
+        self.play_etw_checkbox = create_checkbox_setting(
+            "Startup TTS",
+            "play_etw",
+            True,
+            self,
+            etw_tooltip,
+        )
+        self.play_50hz_hum_checkbox = create_checkbox_setting(
+            "Power Line Buzz",
+            "play_50hz_hum",
+            True,
+            self,
+            powerline_tooltip,
+        )
+        self.play_lall_checkbox = create_checkbox_setting(
+            "Shutdown TTS",
+            "play_lall",
+            True,
+            self,
+            lall_tooltip,
+        )
+        sound_layout.addWidget(self.play_etw_checkbox)
+        sound_layout.addWidget(self.play_50hz_hum_checkbox)
+        sound_layout.addWidget(self.play_lall_checkbox)
+        sound_layout.addStretch()
+        sound_group.setLayout(sound_layout)
+        layout.addWidget(sound_group)
+
 
     def _create_style_tab(self) -> None:
         """Create the Style settings tab."""
@@ -954,6 +992,7 @@ class SettingsDialog(QDialog):
         """Save all settings and close."""
         self._save_general_settings()
         self._save_download_settings()
+        self._save_audio_settings()
         if not self._save_style_settings():
             return  # Style validation failed
         logger.info("All settings saved.")
@@ -1010,9 +1049,6 @@ class SettingsDialog(QDialog):
         self.settings.setValue("play_etw", self.play_etw_checkbox.isChecked())
         self.settings.setValue("play_lall", self.play_lall_checkbox.isChecked())
         self.settings.setValue("play_50hz_hum", self.play_50hz_hum_checkbox.isChecked())
-        self.settings.setValue("master_volume", self.master_volume_slider.value())
-        self.settings.setValue("effects_volume", self.effects_volume_slider.value())
-        self.settings.setValue("hum_volume", self.hum_volume_slider.value())
         if self.main_window and hasattr(self.main_window, "audio_manager"):
             # noinspection PyUnresolvedReferences
             self.main_window.audio_manager.apply_audio_settings()
