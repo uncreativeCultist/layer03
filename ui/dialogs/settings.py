@@ -307,7 +307,8 @@ class SettingsDialog(QDialog):
         """Initialize and add all settings tabs."""
         self._create_downloads_tab()
         self._create_morrenus_tab()
-        self._create_steam_tab()
+        if sys.platform != "darwin":
+            self._create_steam_tab()
         self._create_tools_tab()
         self._create_audio_tab()
         self._create_style_tab()
@@ -400,7 +401,8 @@ class SettingsDialog(QDialog):
             self,
             library_tooltip,
         )
-        dl_layout.addWidget(self.library_mode_checkbox)
+        if sys.platform != "darwin":
+            dl_layout.addWidget(self.library_mode_checkbox)
 
         self.auto_skip_single_choice_checkbox = create_checkbox_setting(
             "Skip single-choice selection",
@@ -439,7 +441,8 @@ class SettingsDialog(QDialog):
             self,
             "Generate achievement files for your games after downloads.",
         )
-        pp_layout.addWidget(self.achievements_checkbox)
+        if sys.platform != "darwin":
+            pp_layout.addWidget(self.achievements_checkbox)
 
         self.steamless_checkbox = create_checkbox_setting(
             "Remove Steam DRM with Steamless",
@@ -667,12 +670,14 @@ class SettingsDialog(QDialog):
         tools_group = QGroupBox("Tools")
         tools_layout = QVBoxLayout()
 
-        SettingsDialog._add_tool_button(
-            tools_layout,
-            "Configure Achievements",
-            "Launch SLScheevo to setup achievement credentials.",
-            self.run_slscheevo,
-        )
+        
+        if sys.platform != "darwin":
+            SettingsDialog._add_tool_button(
+                tools_layout,
+                "Configure Achievements",
+                "Launch SLScheevo to setup achievement credentials.",
+                self.run_slscheevo,
+            )
 
         SettingsDialog._add_tool_button(
             tools_layout,
@@ -829,7 +834,7 @@ class SettingsDialog(QDialog):
         self.font_reset_button.clicked.connect(self.reset_font)
         font_layout.addLayout(font_children)
         font_group.setLayout(font_layout)
-        layout.addWidget(font_group)
+        #layout.addWidget(font_group) #ok this doesnt even work
 
         # Display Group
         disp_group = QGroupBox("Display Settings")
@@ -1011,21 +1016,22 @@ class SettingsDialog(QDialog):
     def _save_download_settings(self) -> None:
         if self.sls_mode_checkbox is not None:
             self.settings.setValue("slssteam_mode", self.sls_mode_checkbox.isChecked())
-        self.settings.setValue(
-            "sls_config_management",
-            self.sls_config_management_checkbox.isChecked(),
-        )
+        if sys.platform != "darwin":
+            self.settings.setValue(
+                        "sls_config_management",
+                        self.sls_config_management_checkbox.isChecked(),
+                    )
+            self.settings.setValue(
+                "prompt_steam_restart",
+                self.prompt_steam_restart_checkbox.isChecked(),
+            )
+            self.settings.setValue(
+                "generate_achievements", self.achievements_checkbox.isChecked()
+            )
         self.settings.setValue("library_mode", self.library_mode_checkbox.isChecked())
         self.settings.setValue(
             "auto_skip_single_choice",
             self.auto_skip_single_choice_checkbox.isChecked(),
-        )
-        self.settings.setValue(
-            "prompt_steam_restart",
-            self.prompt_steam_restart_checkbox.isChecked(),
-        )
-        self.settings.setValue(
-            "generate_achievements", self.achievements_checkbox.isChecked()
         )
         self.settings.setValue(
             "use_steamless", self.steamless_checkbox.isChecked()

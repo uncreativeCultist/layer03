@@ -22,7 +22,7 @@ If PSYCHE fails to launch, make sure your distro's package for tkinter is instal
 3. Read `!README.txt`
 4. Run `ACCELA.exe`
 ## Running from source	
-This supports Windows, Linux, and (to a limited extent), MacOS.
+This supports Windows, Linux, and MacOS.
 
 ### Prerequisites
 1. [Python 3.14](https://www.python.org/downloads/release/python-31410/) (ymmv with newer/older versions)
