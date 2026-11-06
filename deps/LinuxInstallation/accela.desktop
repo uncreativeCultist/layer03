@@ -1,8 +1,8 @@
 [Desktop Entry]
 Categories=Utility;Application;
-Comment=ＧｏＤ_Ｉｓ_ｉＮ_ｔＨｅ_ＷｉＲｅＤ
+Comment=GoD_Is_iN_tHe_wIrEd
 Exec=~/.local/share/PSYCHE/deps/LinuxInstallation/run.sh %u
-Icon=accela
+Icon=~/.local/share/PSYCHE/res/logo/accela.png
 MimeType=x-scheme-handler/accela;
 Name=ACCELA
 NoDisplay=false
