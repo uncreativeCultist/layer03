@@ -151,6 +151,9 @@ if Path("hubcapkey.txt").exists():
         if "API key not found or expired" in response:
             logger.info("Key is invalid, getting new one...")
             getnewKey()
+        elif response.status_code != 200:
+            logger.info("Key is invalid, getting new one...")
+            getnewKey()
         else:
             logger.info("Key appears to be valid, continuing...")
     except:
